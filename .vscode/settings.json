@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "": "grafana/provisioning/**/*.yml"
+    },
+    "yaml.validate": false
+}
