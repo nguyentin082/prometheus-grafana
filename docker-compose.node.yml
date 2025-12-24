@@ -9,6 +9,7 @@ services:
     container_name: node-exporter
     pid: host
     network_mode: host
+    privileged: true
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
