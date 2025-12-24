@@ -20,6 +20,13 @@ services:
       - "--path.sysfs=/host/sys"
       - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
       - "--web.listen-address=:9100"
+      - "--collector.disable-defaults"
+      - "--collector.cpu"
+      - "--collector.meminfo"
+      - "--collector.diskstats"
+      - "--collector.filesystem"
+      - "--collector.netdev"
+      - "--collector.loadavg"
     restart: unless-stopped
 
   # cAdvisor - Container metrics collector
