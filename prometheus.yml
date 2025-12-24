@@ -28,7 +28,7 @@ scrape_configs:
       static_configs:
           - targets:
                 - 'localhost:9100'
-                - '192.168.100.56:9100'
+                - '192.168.100.71:9100'
 
     # cAdvisor - Container metrics from both servers
     - job_name: 'cadvisor'
@@ -37,4 +37,4 @@ scrape_configs:
       static_configs:
           - targets:
                 - 'localhost:8080'
-                - '192.168.100.56:8080'
+                - '192.168.100.71:8080'

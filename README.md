@@ -11,13 +11,13 @@ Self-hosted monitoring stack for AMAZ Healthcare platform.
 
 ### Multi-Server Architecture
 
-**Monitoring Server (192.168.100.71)**
+**Monitoring Server (192.168.100.56)**
 - Prometheus (port 1090)
 - Grafana (port 1300)
 - Node Exporter (port 9100)
 - cAdvisor (port 8080)
 
-**Node Server(s) (192.168.100.56, ...)**
+**Node Server(s) (192.168.100.71, ...)**
 - Node Exporter (port 9100)
 - cAdvisor (port 8080)
 
@@ -35,12 +35,12 @@ docker compose down
 
 ### Multi-Server Deployment
 
-**On each node server (192.168.100.56, etc.):**
+**On each node server (192.168.100.71, etc.):**
 ```bash
 docker compose -f docker-compose.node.yml up -d
 ```
 
-**On monitoring server (192.168.100.71):**
+**On monitoring server (192.168.100.56):**
 ```bash
 # Start exporters
 docker compose -f docker-compose.node.yml up -d
@@ -51,8 +51,8 @@ docker compose -f docker-compose.monitoring.yml up -d
 
 ## Access URLs
 
-- **Prometheus**: http://192.168.100.71:1090 (or localhost:1090)
-- **Grafana**: http://192.168.100.71:1300 (or localhost:1300)
+- **Prometheus**: http://192.168.100.56:1090 (or localhost:1090)
+- **Grafana**: http://192.168.100.56:1300 (or localhost:1300)
 
 ## Configuration
 
@@ -69,8 +69,8 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets:
-          - '192.168.100.71:9100'
           - '192.168.100.56:9100'
+          - '192.168.100.71:9100'
           - '192.168.100.XX:9100'  # Add new servers here
 ```
 
@@ -109,14 +109,14 @@ sudo ufw allow 1300/tcp comment 'Grafana'
 
 **Test exporter from monitoring server:**
 ```bash
-curl http://192.168.100.56:9100/metrics
-curl http://192.168.100.56:8080/metrics
+curl http://192.168.100.71:9100/metrics
+curl http://192.168.100.71:8080/metrics
 ```
 
 **Verify network connectivity:**
 ```bash
-ping 192.168.100.56
-telnet 192.168.100.56 9100
+ping 192.168.100.71
+telnet 192.168.100.71 9100
 ```
 
 **Reload Prometheus config:**
