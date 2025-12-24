@@ -24,7 +24,7 @@ scrape_configs:
 
     # Node Exporter - System metrics from both servers
     - job_name: 'node-exporter'
-      scrape_interval: 15s
+      scrape_interval: 25s
       static_configs:
           - targets:
                 - 'localhost:9100'
